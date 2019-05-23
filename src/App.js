@@ -3,11 +3,13 @@ import axios from "axios";
 //Components
 import Header from "./components/header";
 import MoviesList from "./components/MoviesList";
+import Checkbox from "./components/checkbox";
 class App extends Component {
   state = {
     movie: [],
     movies: [],
-    filtered: []
+    filtered: [],
+    gender: "movie"
   };
 
   consulta = video => {
@@ -39,7 +41,8 @@ class App extends Component {
     return (
       <div>
         <Header keywords={this.getkeywords} />
-        <MoviesList movies={this.state.movies} />
+        <Checkbox gender={this.state.gender} movies={this.state.movies} />
+        {/* <MoviesList movies={this.state.movies} /> */}
       </div>
     );
   }
