@@ -15,6 +15,7 @@ class Checkbox extends Component {
     const result = arr.filter(item => {
       return item.Type === value;
     });
+    console.log(result);
     return result;
   }
 
@@ -47,6 +48,7 @@ class Checkbox extends Component {
           />{" "}
           Serie
         </label>
+        {this.result}
       </div>
     );
   }
