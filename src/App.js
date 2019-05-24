@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 //Components
 import Header from "./components/header";
-import MoviesList from "./components/MoviesList";
+//import MoviesList from "./components/MoviesList";
 import Checkbox from "./components/checkbox";
 class App extends Component {
   state = {
+    checkedBox: "",
     movie: [],
     movies: [],
-    filtered: [],
-    gender: "movie"
+    filtered: []
   };
 
   consulta = video => {
@@ -37,12 +37,15 @@ class App extends Component {
   };
 
   render() {
-    //console.log("movies", this.state.movies);
+    //console.log("movies", this.state.Checkbox);
     return (
       <div>
         <Header keywords={this.getkeywords} />
-        <Checkbox gender={this.state.gender} movies={this.state.movies} />
-        {/* <MoviesList movies={this.state.movies} /> */}
+        <Checkbox
+          gender={this.state.gender}
+          movies={this.state.movies}
+          checkedBox={this.state.checkedBox}
+        />
       </div>
     );
   }

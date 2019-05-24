@@ -1,27 +1,30 @@
 import React, { Component } from "react";
+import MoviesList from "./MoviesList";
 
 class Checkbox extends Component {
   constructor() {
     super();
     this.state = {
-      checkedBox: "movie"
+      checkedBox: ""
     };
     this.handleChange = this.handleChange.bind(this);
   }
-  filter(value) {
-    console.log(value);
+  filter(value, checked) {
+    let arr = this.props.movies;
+    //console.log(arr);
+    const result = arr.filter(item => {
+      return item.Type === value;
+    });
+    return result;
   }
 
   handleChange(event) {
     const { name, value, type, checked } = event.target;
     this.setState({ checkedBox: value });
-    //console.log(value);
-    this.filter(value);
-    /* let movies = this.props.movies; */
+    this.filter(value, checked);
   }
 
   render() {
-    //console.log(this.props);
     return (
       <div>
         <label>
