@@ -4,6 +4,10 @@ import axios from "axios";
 import Header from "./components/header";
 import MoviesList from "./components/MoviesList";
 import Checkbox from "./components/checkbox";
+
+//styles
+import globalStyles from './global.scss'; 
+
 class App extends Component {
   state = {
     movie: [],
@@ -39,7 +43,11 @@ class App extends Component {
   render() {
     //console.log("movies", this.state.movies);
     return (
-      <div>
+      <div className="dude">
+        <ul>
+          <li>1</li>
+          <li>2</li>
+        </ul>
         <Header keywords={this.getkeywords} />
         <Checkbox gender={this.state.gender} movies={this.state.movies} />
         {/* <MoviesList movies={this.state.movies} /> */}
