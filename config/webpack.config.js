@@ -453,7 +453,7 @@ module.exports = function(webpackEnv) {
               ),
             },
             {
-              test: /\.scss$/,
+              test: /\.(scss|sass)$/,
               use: [
                   "style-loader", // creates style nodes from JS strings
                   "css-loader", // translates CSS into CommonJS

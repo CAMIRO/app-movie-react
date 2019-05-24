@@ -6,7 +6,7 @@ import MoviesList from "./components/MoviesList";
 import Checkbox from "./components/checkbox";
 
 //styles
-import globalStyles from './global.scss'; 
+import globalStyles from './global2.sass'; 
 
 class App extends Component {
   state = {
