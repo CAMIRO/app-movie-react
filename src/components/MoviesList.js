@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const MoviesList = props => {
   console.log(props);
   return <div>sup</div>;
