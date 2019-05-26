@@ -5,7 +5,8 @@ class Checkbox extends Component {
   constructor() {
     super();
     this.state = {
-      checkedBox: ""
+      checkedBox: "",
+      movies: []
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -15,8 +16,8 @@ class Checkbox extends Component {
     const result = arr.filter(item => {
       return item.Type === value;
     });
-    console.log(result);
-    return result;
+    //console.log(result);
+    this.setState({ movies: result });
   }
 
   handleChange(event) {
@@ -26,6 +27,7 @@ class Checkbox extends Component {
   }
 
   render() {
+    console.log("the movies state", this.state.movies);
     return (
       <div>
         <label>
@@ -48,7 +50,11 @@ class Checkbox extends Component {
           />{" "}
           Serie
         </label>
-        {this.result}
+        <br />
+        <MoviesList movies={this.state.movies} />
+        <div>
+          <h4>{this.state.title}</h4>
+        </div>
       </div>
     );
   }
