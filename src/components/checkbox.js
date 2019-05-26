@@ -27,7 +27,7 @@ class Checkbox extends Component {
   }
 
   render() {
-    console.log("the movies state", this.state.movies);
+    ///console.log("the movies state", this.state.movies);
     return (
       <div>
         <label>
@@ -51,7 +51,7 @@ class Checkbox extends Component {
           Serie
         </label>
         <br />
-        <MoviesList movies={this.state.movies} />
+        <MoviesList movies={this.state.movies} type={this.state.checkedBox} />
         <div>
           <h4>{this.state.title}</h4>
         </div>

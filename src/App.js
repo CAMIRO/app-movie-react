@@ -6,7 +6,7 @@ import Header from "./components/header";
 import Checkbox from "./components/checkbox";
 
 //styles
-import globalStyles from './global2.sass'; 
+import globalStyles from "./global2.sass";
 
 class App extends Component {
   state = {

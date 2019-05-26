@@ -1,14 +1,10 @@
 import React from "react";
-
+import MovieItem from "./Movie_List_item";
 const MoviesList = props => {
   const items = props.movies.map(item => {
-    return (
-      <div key={item.imdbID}>
-        <div>{item.Year}</div>
-        <div>{item.Title}</div>
-      </div>
-    );
+    //console.log(props);
+    return <MovieItem item={item} key={item.imdbID} />;
   });
-  return <div>{items.length}</div>;
+  return <div>{items}</div>;
 };
 export default MoviesList;
