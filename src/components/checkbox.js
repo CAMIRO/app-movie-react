@@ -39,7 +39,6 @@ class Checkbox extends Component {
   }
 
   render() {
-    //console.log("the movies state", this.state.movies);
     //2. Logic for displaying movies paginator
     const { movies, currentPage, moviesPerPage } = this.state;
 
@@ -47,9 +46,21 @@ class Checkbox extends Component {
     const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
     const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
 
-    const renderMovies = currentMovies.map((movie, index) => {
+    //TODO: chequear este map que consida con el map de de MovieList
+    /* const renderMovies = currentMovies.map((movie, index) => {
       return <li key={index}>{movie}</li>;
-    });
+    }); */
+    console.log("currentMovies", currentMovies);
+    const MoviesList = movies => {
+      const items = movies.map(item => {
+        return (
+          <div key={item.imdbID}>
+            <div>{item.Title}</div>
+          </div>
+        );
+      });
+      return <div>{items}</div>;
+    };
 
     //3. Logic for displaying page numbers
     const pageNumbers = [];
@@ -65,7 +76,7 @@ class Checkbox extends Component {
       );
     });
     //3. Logic for displaying page numbers
-    console.log("the movies state", indexOfLastMovie);
+    /// console.log("the movies state", renderMovies);
     return (
       <div>
         <label>
@@ -90,7 +101,8 @@ class Checkbox extends Component {
           Serie
         </label>
         {/* <ul>{renderMovies}</ul> */}
-        <MoviesList movies={this.state.movies} type={this.state.checkedBox} />
+        {/*  <MoviesList movies={renderMovies} type={this.state.checkedBox} /> */}
+        <div>{MoviesList(currentMovies)}</div>
         <ul id="page-numbers">{renderPageNumbers}</ul>
       </div>
     );
