@@ -13,6 +13,7 @@ class Checkbox extends Component {
       moviesPerPage: 3
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handlePaginatorChange = this.handlePaginatorChange.bind(this);
   }
 
   handleChange(event) {
@@ -20,6 +21,8 @@ class Checkbox extends Component {
     this.setState({ checkedBox: value });
     this.filter(value, checked);
     //1. paginator feature
+  }
+  handlePaginatorChange(event) {
     this.setState({
       currentPage: Number(event.target.id)
     });
@@ -36,7 +39,7 @@ class Checkbox extends Component {
   }
 
   render() {
-    console.log("the movies state", this.state.movies);
+    //console.log("the movies state", this.state.movies);
     //2. Logic for displaying movies paginator
     const { movies, currentPage, moviesPerPage } = this.state;
 
@@ -56,12 +59,13 @@ class Checkbox extends Component {
 
     const renderPageNumbers = pageNumbers.map(number => {
       return (
-        <li key={number} id={number} onClick={this.handleChange}>
+        <li key={number} id={number} onClick={this.handlePaginatorChange}>
           {number}
         </li>
       );
     });
     //3. Logic for displaying page numbers
+    console.log("the movies state", indexOfLastMovie);
     return (
       <div>
         <label>
@@ -85,7 +89,8 @@ class Checkbox extends Component {
           />{" "}
           Serie
         </label>
-        <ul>{renderMovies}</ul>
+        {/* <ul>{renderMovies}</ul> */}
+        <MoviesList movies={this.state.movies} type={this.state.checkedBox} />
         <ul id="page-numbers">{renderPageNumbers}</ul>
       </div>
     );
