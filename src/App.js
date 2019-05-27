@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 //Components
 import Header from "./components/header";
-//import MoviesList from "./components/MoviesList";
 import Checkbox from "./components/checkbox";
 
 //styles
@@ -16,7 +15,7 @@ class App extends Component {
     filtered: []
   };
 
-  consulta = video => {
+  componentDidMount = video => {
     const API_KEY = "7c4a7eaa";
     return axios
       .get(`http://www.omdbapi.com/?s=${video}&apikey=${API_KEY}`)
@@ -29,19 +28,22 @@ class App extends Component {
             movies: movies
           });
         }
+      })
+      .catch(e => {
+        console.error(e);
       });
   };
 
   getkeywords = e => {
     if (e.target.value !== "") {
       let video = e.target.value;
-      this.consulta(video);
+      this.componentDidMount(video);
     } else {
     }
   };
 
   render() {
-    //console.log("movies", this.state.Checkbox);
+    ///console.log("componentDidMount: ", this.componentDidMount);
     return (
       <div className="dude">
         <ul>

@@ -1,3 +1,5 @@
+//https://stackoverflow.com/questions/40232847/how-to-implement-pagination-in-reactjs
+//https://codepen.io/anon/pen/wbXpBK
 import React, { Component } from "react";
 import MoviesList from "./MoviesList";
 
@@ -6,10 +8,23 @@ class Checkbox extends Component {
     super();
     this.state = {
       checkedBox: "",
-      movies: []
+      movies: [],
+      currentPage: 1,
+      moviesPerPage: 3
     };
     this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(event) {
+    const { name, value, type, checked } = event.target;
+    this.setState({ checkedBox: value });
+    this.filter(value, checked);
+    //1. paginator feature
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
+  }
+
   filter(value, checked) {
     let arr = this.props.movies;
     //console.log(arr);
@@ -20,14 +35,33 @@ class Checkbox extends Component {
     this.setState({ movies: result });
   }
 
-  handleChange(event) {
-    const { name, value, type, checked } = event.target;
-    this.setState({ checkedBox: value });
-    this.filter(value, checked);
-  }
-
   render() {
-    ///console.log("the movies state", this.state.movies);
+    console.log("the movies state", this.state.movies);
+    //2. Logic for displaying movies paginator
+    const { movies, currentPage, moviesPerPage } = this.state;
+
+    const indexOfLastMovie = currentPage * moviesPerPage;
+    const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+    const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
+
+    const renderMovies = currentMovies.map((movie, index) => {
+      return <li key={index}>{movie}</li>;
+    });
+
+    //3. Logic for displaying page numbers
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(movies.length / moviesPerPage); i++) {
+      pageNumbers.push(i);
+    }
+
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <li key={number} id={number} onClick={this.handleChange}>
+          {number}
+        </li>
+      );
+    });
+    //3. Logic for displaying page numbers
     return (
       <div>
         <label>
@@ -40,6 +74,7 @@ class Checkbox extends Component {
           />{" "}
           Movie
         </label>
+
         <label>
           <input
             type="radio"
@@ -50,13 +85,40 @@ class Checkbox extends Component {
           />{" "}
           Serie
         </label>
-        <br />
-        <MoviesList movies={this.state.movies} type={this.state.checkedBox} />
-        <div>
-          <h4>{this.state.title}</h4>
-        </div>
+        <ul>{renderMovies}</ul>
+        <ul id="page-numbers">{renderPageNumbers}</ul>
       </div>
     );
+
+    /*   return (
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="vidType"
+            value="movie"
+            checked={this.state.checkedBox === "movie"}
+            onChange={this.handleChange}
+          />{" "}
+          Movie
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="vidType"
+            value="series"
+            checked={this.state.checkedBox === "series"}
+            onChange={this.handleChange}
+          />{" "}
+          Serie
+        </label>
+
+        <br />
+        <MoviesList movies={this.state.movies} type={this.state.checkedBox} />
+      </div>
+    );
+ */
   }
 }
 export default Checkbox;
