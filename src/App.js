@@ -46,10 +46,7 @@ class App extends Component {
     ///console.log("componentDidMount: ", this.componentDidMount);
     return (
       <div className="dude">
-        <ul>
-          <li>1</li>
-          <li>2</li>
-        </ul>
+       
         <Header keywords={this.getkeywords} />
         <Checkbox
           gender={this.state.gender}

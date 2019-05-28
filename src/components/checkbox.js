@@ -18,7 +18,7 @@ class Checkbox extends Component {
 
   handleChange(event) {
     const { name, value, type, checked } = event.target;
-    this.setState({ checkedBox: value });
+    this.setState({ checkedBox: value, currentPage: 1  });
     this.filter(value, checked);
     //1. paginator feature
   }
@@ -56,6 +56,8 @@ class Checkbox extends Component {
         return (
           <div key={item.imdbID}>
             <div>{item.Title}</div>
+            <div>{item.Year}</div>
+            <img src={item.Poster} alt="thumbnail" />
           </div>
         );
       });
@@ -106,36 +108,6 @@ class Checkbox extends Component {
         <ul id="page-numbers">{renderPageNumbers}</ul>
       </div>
     );
-
-    /*   return (
-      <div>
-        <label>
-          <input
-            type="radio"
-            name="vidType"
-            value="movie"
-            checked={this.state.checkedBox === "movie"}
-            onChange={this.handleChange}
-          />{" "}
-          Movie
-        </label>
-
-        <label>
-          <input
-            type="radio"
-            name="vidType"
-            value="series"
-            checked={this.state.checkedBox === "series"}
-            onChange={this.handleChange}
-          />{" "}
-          Serie
-        </label>
-
-        <br />
-        <MoviesList movies={this.state.movies} type={this.state.checkedBox} />
-      </div>
-    );
- */
   }
 }
 export default Checkbox;
